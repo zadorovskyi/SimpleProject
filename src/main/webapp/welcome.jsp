@@ -10,7 +10,8 @@
 <html>
 <head>
     <title>Welcome</title>
-    <link type="text/css" rel="stylesheet" href="<c:url value="css/bootstrap.min.css" />"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <%--<link type="text/css" rel="stylesheet" href="<c:url value="css/bootstrap.min.css" />"/>--%>
 </head>
 <body>
     <jsp:include page="header.jsp"/>

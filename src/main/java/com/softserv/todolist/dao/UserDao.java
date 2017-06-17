@@ -44,7 +44,7 @@ public enum UserDao {
         return user;
     }
 
-    public boolean userValidate(String login, String password){
+    public User getUserByLoginAndPassword(String login, String password){
         User user = null;
         PreparedStatement preparedStatement;
         Connection connection = DBConnection.getInstance().getConnection();
@@ -57,6 +57,11 @@ public enum UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return user;
+    }
+
+    public boolean userValidate(String login, String password){
+        User user = getUserByLoginAndPassword(login, password);
         if(user == null){
             return false;
         }else {

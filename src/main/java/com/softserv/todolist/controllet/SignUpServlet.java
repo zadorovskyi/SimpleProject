@@ -24,36 +24,28 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String message;
-        String name = req.getParameter("name");
-        int age = 0;
         try {
-            age = Integer.parseInt(req.getParameter("age"));
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
-
-        String address = req.getParameter("address");
-        String password = req.getParameter("password");
-        String login = req.getParameter("login");
-
-        System.out.println(password);
-        if (name == "" || address == "" || password == "" || login == "") {
-            message = "Data is incorrect";
-        } else {
-            if(UserDao.INSTANCE.userValidate(login, password)){
-                message = "User exist";
-            }else {
+            String message;
+            String name = req.getParameter("name");
+            int age = Integer.parseInt(req.getParameter("age"));
+            String address = req.getParameter("address");
+            String password = req.getParameter("password");
+            String login = req.getParameter("login");
+            if ((name != "" || address != "" || password != "" || login != "")
+                    || !UserDao.INSTANCE.userValidate(login, password)) {
                 User user = new User(name, age, address, password, login);
                 UserDao.INSTANCE.saveUser(user);
                 message = "Success!";
+            } else {
+                message = "Data is incorrect";
             }
+            req.setAttribute("message", message);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/signup.jsp");
+            dispatcher.forward(req, resp);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            resp.sendError(400, "Data is incorrect");
         }
-        req.setAttribute("message", message);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/signup.jsp");
-        dispatcher.forward(req, resp);
-
-
 
     }
 }
