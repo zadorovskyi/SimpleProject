@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by jarki on 6/17/2017.
- */
-@WebFilter("/signup")
+
+//@WebFilter("/signupyy")
 public class SignUpFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

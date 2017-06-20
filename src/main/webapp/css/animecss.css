@@ -1,0 +1,85 @@
+
+
+.block{
+	width:200px;
+	height:150px;
+	border-radius:50%;
+	position:absolute;
+	top:250px;
+	left:250px;
+	animation-name:oval;
+	animation-duration:1.5s;
+	animation-timing-function:linear;
+	animation-iteration-count:infinite;
+	transition:opacity 1s;
+	
+}
+.button1{
+	position:absolute;
+	left:-215px;
+	top:-215px;
+	z-index:30;
+
+}
+
+.block1{
+	background-color:blue;
+	animation-delay:0s;
+	opacity:0.3;
+	
+}	
+.block2{
+	background-color:#057D31;
+	animation-delay:0.15s;
+	opacity:0.3;
+
+	
+}
+.block3{
+	background-color:#8A4117;
+	animation-delay:0.32s;
+	opacity:0.3;
+
+}
+.block4{
+	background-color:red;
+	animation-delay:0.5s;
+	opacity:0.3;
+}
+.round1{
+	
+	width:146px;
+	height:146px;
+	border-radius:50%;
+	position:absolute;
+	top:249px;
+	left:273px;
+	z-index:9;
+	transition:all 1s;
+	text-align:center;
+		}
+	
+
+@keyframes oval{
+	from{
+		transform:rotate(0deg) scale(1.1);
+		}
+	to{
+		transform:rotate(360deg) scale(1.1);
+		}
+}
+.error{
+	color: red;
+	font-size: 20px;
+	font-style: italic;
+	text-align: center;
+	animation-name:errorAn;
+}
+@keyframes errorAn{
+	from{
+		transform:scale(1.3);
+	}
+	to{
+		transform:scale(1);
+	}
+}

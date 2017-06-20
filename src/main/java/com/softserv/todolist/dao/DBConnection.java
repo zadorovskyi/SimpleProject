@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/usertest?usessl=false";
+    private static final String DB_URL = "jdbc:mysql://localhost/softproject?usessl=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASS = "123456";
     private static DBConnection dbConnection;
@@ -16,7 +16,7 @@ public class DBConnection {
             dbConnection = new DBConnection();
             return dbConnection;
         } else {
-            
+
             return dbConnection;
         }
     }
@@ -32,11 +32,9 @@ public class DBConnection {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     public Connection getConnection() {
         return connection;
     }
-
 }

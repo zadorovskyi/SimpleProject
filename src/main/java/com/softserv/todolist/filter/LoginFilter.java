@@ -1,5 +1,7 @@
 package com.softserv.todolist.filter;
 
+import com.softserv.todolist.entity.UserDTO;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by jarki on 6/17/2017.
- */
 
-@WebFilter("/login")
+@WebFilter("/user")
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -24,13 +23,17 @@ public class LoginFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         HttpSession session = req.getSession(false);
+        if (session != null) {
+            UserDTO logedUser = (UserDTO) session.getAttribute("loginedUser");
+            if (logedUser != null) {
+                if (logedUser.getIsAuthorized() == 1) {
+                    filterChain.doFilter(req, resp);
+                }
+            } else {
+                resp.sendRedirect("/login");
+                resp.setHeader("authorizedError","You are not authorized");
 
-        if(session == null || session.getAttribute("UserDto") == null) {
-            filterChain.doFilter(req, resp);
-
-
-        } else {
-            resp.sendError(404);
+            }
         }
     }
 
